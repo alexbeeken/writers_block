@@ -2,29 +2,44 @@
 # as input and outputs a sentence string based on those words
 
 class PhraseGenerator
-  TAGS_SIZE = 4
-
-  def initialize(nouns)
-    @nouns = nouns
+  def initialize(words = '')
+    @tagger = EngTagger.new
+    tagged_words = @tagger.add_tags(words)
+    @image_nouns = @tagger.get_nouns(tagged_words).keys
   end
 
   def perform
-    @sentence_words = SENTENCES.sample(1)[0].split(' ')
-    replace_words.join(" ")
+    @sentence = SENTENCES.sample(1)[0].split(' ')
+    replace_nouns
+    @sentence.join(' ')
   end
 
   private
 
-  def replace_words
-    words_to_replace.each_with_index do |word, count|
-      index = @sentence_words.index(word)
-      @sentence_words[index] = @nouns[count]
+  def array_without_punctuation
+    @clean_array ||= @sentence.each_with_object([]) do |characters, array|
+      array.push(characters.gsub(/[^A-Za-z ]/, ''))
     end
-    @sentence_words
   end
 
-  def words_to_replace
-    # planning ahead here because this will be useful when using the API
-    @sentence_words.sample(TAGS_SIZE)
+  def replace_nouns
+    tagged_sentence = @tagger.add_tags(@sentence.join(' '))
+    @sentence_nouns = @tagger.get_nouns(tagged_sentence).keys
+    @sentence_nouns.sample(word_limit).each_with_index do |word, index|
+      @sentence = replace(@sentence, @image_nouns[index], word)
+    end
+  end
+
+  def replace(array, word_in, word_out)
+    index = array_without_punctuation.index(word_out)
+    array[index] = word_in
+    array
+  end
+
+  def word_limit
+    sentence_noun_count = @sentence_nouns.count
+    image_noun_count = @image_nouns.count
+    sentence_noun_count > image_noun_count ?
+      image_noun_count : sentence_noun_count
   end
 end

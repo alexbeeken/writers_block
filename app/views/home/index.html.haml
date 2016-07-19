@@ -8,6 +8,8 @@
 
 .past_phrases
   - @phrases.each do |p|
+    .image
+      = image_tag(p.upload.image.url(:thumb))
     .phrase
       = p.content
       <br>
