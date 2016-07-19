@@ -1,2 +1,7 @@
 %h1
   A Cure for Writer's Block!
+
+.image_upload
+  = form_for @upload, url: upload_path do |form|
+    = form.file_field :image
+    = form.submit 'upload'
