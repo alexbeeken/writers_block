@@ -65,4 +65,11 @@ Rails.application.configure do
       s3_region: ENV.fetch('AWS_REGION')
     }
   }
+
+  ClarifaiRuby.configure do |config|
+    config.base_url       = "https://api.clarifai.com"
+    config.version_path   = "/v1"
+    config.client_id      = ENV.fetch('CLARIFAI_ID')
+    config.client_secret  = ENV.fetch('CLARIFAI_SECRET')
+  end
 end

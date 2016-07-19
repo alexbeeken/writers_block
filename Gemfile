@@ -29,11 +29,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'clarifai'
+gem 'clarifai_ruby'
 gem 'haml'
 gem 'paperclip'
 gem 'dotenv-rails'
 gem 'aws-sdk'
+gem 'hashie'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

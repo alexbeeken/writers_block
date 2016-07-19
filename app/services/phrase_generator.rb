@@ -2,13 +2,15 @@
 # as input and outputs a sentence string based on those words
 
 class PhraseGenerator
+  TAGS_SIZE = 4
+
   def initialize(nouns)
     @nouns = nouns
   end
 
   def perform
     @sentence_words = SENTENCES.sample(1)[0].split(' ')
-    replace_words
+    replace_words.join(" ")
   end
 
   private
@@ -23,6 +25,6 @@ class PhraseGenerator
 
   def words_to_replace
     # planning ahead here because this will be useful when using the API
-    @sentence_words.sample(@nouns.count)
+    @sentence_words.sample(TAGS_SIZE)
   end
 end
