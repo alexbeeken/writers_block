@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719003123) do
+ActiveRecord::Schema.define(version: 20160719043105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "sentences", force: :cascade do |t|
+  create_table "phrases", force: :cascade do |t|
+    t.string  "words"
+    t.text    "content"
+    t.integer "upload_id"
+    t.index ["upload_id"], name: "index_phrases_on_upload_id", using: :btree
+  end
+
+  create_table "uploads", force: :cascade do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
