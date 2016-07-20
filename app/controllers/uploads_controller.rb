@@ -1,7 +1,7 @@
 class UploadsController < ApplicationController
   def create
     upload = Upload.create(upload_params)
-    words = get_clarifai_tags
+    words = get_clarifai_tags(upload)
     Phrase.create(
       words: words,
       content: PhraseGenerator.new(words),
