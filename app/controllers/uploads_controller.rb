@@ -2,9 +2,10 @@ class UploadsController < ApplicationController
   def create
     upload = Upload.create(upload_params)
     words = get_clarifai_tags(upload)
+    pg = PhraseGenerator.new(words)
     Phrase.create(
       words: words,
-      content: PhraseGenerator.new(words),
+      content: pg.perform,
       upload: upload
     )
     redirect_to root_path
