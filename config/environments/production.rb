@@ -83,4 +83,25 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Paperclip.options[:command_path] = '/usr/local/sbin/'
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    url: ':s3_domain_url',
+    path: ":id_:basename.:style.:extension",
+    s3_credentials: {
+      bucket: ENV.fetch('S3_BUCKET_NAME'),
+      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+      s3_region: ENV.fetch('AWS_REGION')
+    }
+  }
+
+  ClarifaiRuby.configure do |config|
+    config.base_url       = "https://api.clarifai.com"
+    config.version_path   = "/v1"
+    config.client_id      = ENV.fetch('CLARIFAI_ID')
+    config.client_secret  = ENV.fetch('CLARIFAI_SECRET')
+  end
 end
