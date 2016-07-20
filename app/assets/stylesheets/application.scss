@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #101F24;
+}
+
+.jumbotron {
+  height: 350px;
+  z-index: 2;
+  box-shadow: 0 8px 16px -6px black;
+  background-color: #C1DBD5;
+  font-family: fantasy;
+}
+
+.form-container {
+  text-align: center;
+  width: 300px;
+  position: relative;
+}
+
+.title {
+  font-family: fantasy;
+  font-size: 100px;
+  text-align: left;
+}
+
+.page-header {
+  background-color: #D1E0A6;
+}
+
+.uploaded_time {
+  font-size: 12px;
+}

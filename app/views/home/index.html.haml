@@ -1,15 +1,31 @@
-%h1
-  A Cure for Writer's Block!
+.page-header
+  .container
+    .row-fluid
+      .title
+        Picture Stories
+    .row-fluid
+      .container
+        .form-container
+          = form_for @upload, url: upload_path, class: 'form-group' do |form|
+            = form.label :upload_an_image!
+            = form.file_field :image, class: 'form-control'
+            = form.submit 'upload', class: 'form-control btn btn-primary'
 
-.image_upload
-  = form_for @upload, url: upload_path do |form|
-    = form.file_field :image
-    = form.submit 'upload'
-
-.past_phrases
-  - @phrases.each do |p|
-    .image
-      = image_tag(p.upload.image.url(:thumb))
-    .phrase
-      = p.content
-      <br>
+.container
+  .row
+    - @phrases.each do |p|
+      .col-sm-4
+        .jumbotron
+          .text-center
+            .uploaded_time
+              Uploaded on
+              = p.upload.image_updated_at.strftime("%B %d, %Y")
+              <br>
+              <br>
+            .image
+              = image_tag(p.upload.image.url(:thumb), class: 'img-rounded')
+              <br>
+              <br>
+            .phrase
+              = p.content
+              <br>
