@@ -23,7 +23,8 @@
               <br>
               <br>
             .image
-              = image_tag(p.upload.image.url(:thumb), class: 'img-rounded')
+
+              = link_to image_tag(p.upload.image.url(:thumb), class: 'img-rounded'), p.upload.image.url(:medium)
               <br>
               <br>
             .phrase
