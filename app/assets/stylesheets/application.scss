@@ -29,6 +29,8 @@ body {
 }
 
 .form-container {
+  margin-top: 110px;
+  margin-left: 12px;
   text-align: center;
   width: 300px;
   position: relative;
@@ -46,4 +48,12 @@ body {
 
 .uploaded_time {
   font-size: 12px;
+}
+
+.circle{
+	border-radius: 400px;
+	background-color: #D4A190;
+	height: 350px;
+	font-weight: bold;
+	width: 350px;
 }

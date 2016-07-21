@@ -4,12 +4,13 @@
       .title
         Picture Stories
     .row-fluid
-      .container
-        .form-container
-          = form_for @upload, url: upload_path, class: 'form-group' do |form|
-            = form.label :upload_an_image!
-            = form.file_field :image, class: 'form-control'
-            = form.submit 'upload', class: 'form-control btn btn-primary'
+      .circle
+        .container
+          .form-container
+            = form_for @upload, url: upload_path, class: 'form-group' do |form|
+              = form.label :upload_an_image!
+              = form.file_field :image, class: 'form-control'
+              = form.submit 'upload', class: 'form-control btn btn-primary'
 
 .container
   .row
